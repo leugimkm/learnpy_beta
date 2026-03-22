@@ -1,10 +1,14 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Trigger the workflow every time you push to the `main` branch
+  # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [main]
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
+# Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
   pages: write
@@ -14,10 +18,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout your repository using git
         uses: actions/checkout@v5
-      - name: Install, build, and upload
+      - name: Install, build, and upload your site
         uses: withastro/action@v5
+        with:
+          path: . 
+          node-version: 24 
+          package-manager: npm@latest 
+          build-cmd: pnpm run build
+        
 
   deploy:
     needs: build
