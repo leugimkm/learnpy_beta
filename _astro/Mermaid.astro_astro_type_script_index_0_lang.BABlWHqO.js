@@ -1,0 +1,1 @@
+import e from"https://cdn.jsdelivr.net/npm/mermaid@12.0.0/+esm";e.initialize({startOnLoad:!0});
